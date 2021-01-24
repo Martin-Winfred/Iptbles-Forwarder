@@ -7,6 +7,7 @@ TCP_FLAG=False
 Cons_input=str(input('Imput your String with [Source ip,Source Port,dest ip,destation port]\n:'))
 #Check UDP or TCP forwording Select
 Select=(input('UDP=1\nTCP=2\nALL=3\nInput the number\n:'))
+
 if Select=='1':
     UDP_FLAG=True
 elif Select=='2':
@@ -14,8 +15,7 @@ elif Select=='2':
 else:
     TCP_FLAG=True
     UDP_FLAG=True
-##print(str(UDP_FLAG))
-##print(TCP_FLAG)
+
 #Seprate Inputed Data
 Sourc_ip,Monitor_Port,Dest_ip,Dest_port=Cons_input.split(',')
 #get Local ip 
@@ -24,11 +24,7 @@ local_ip_get=os.popen("ip -4 addr | grep -v 127.0.0.1|grep -oP '(?<=inet\s)\d+(\
 local_ip=str(local_ip_get.read())
 print(local_ip)
 '''
-iptables -t nat -A PREROUTING -p tcp -m tcp --dport [源端口号] -j DNAT --to-destination [目标IP:目标端口号]
-iptables -t nat -A PREROUTING -p udp --dport [源端口号] -j DNAT --to-destination [目标IP:目标端口号]
-iptables -t nat -A POSTROUTING -p tcp -m tcp -dport [目标IP] --dport [目标端口号] -j SNAT --to-source [中转服务器IP]
-iptables -t nat -A POSTROUTING -p udp  -m tcp -dport [目标IP] --dport [目标端口号] -j SNAT --to-source [中转服务器IP]
-
+Here are some examples of the command
 
 iptables -t nat -A PREROUTING -p tcp --dport $localport -j DNAT --to-destination $remote:$remoteport
 iptables -t nat -A PREROUTING -p udp --dport $localport -j DNAT --to-destination $remote:$remoteport
