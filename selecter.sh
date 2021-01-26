@@ -29,7 +29,7 @@ case $input in
     2)
     echo Here are your rules
     sleep 1
-    iptables -nL;;
+    iptables -t nat -nvL --line-numbers;;
     3)
     echo Here are your ip addresses
     sleep 1
