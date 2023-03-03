@@ -12,7 +12,8 @@ echo "----------------------------------"
 echo "please enter your choise:"
 echo "1) Run iptables forwording selecter"
 echo "2) show all the iptable ruls"
-echo "3) print all the ip address this device has(no localhost)"
+echo "3) print all the ipv4 address this device has(no localhost shows)"
+echo "4) Enable Forwarding function(Ipv4)"
 echo "0) Exit Menu"
 echo "----------------------------------"
 read input
@@ -34,4 +35,8 @@ case $input in
     echo Here are your ip addresses
     sleep 1
     ip -4 addr | grep -v 127.0.0.1|grep -oP '(?<=inet\s)\d+(\.\d+){3}';;
+    4)
+    echo The status wil not be Save after reboot
+    sleep
+    sysctl net.ipv4.ip_forward=1;;
 esac
